@@ -118,7 +118,7 @@ def listen(auto_dir,monomer_name,num_nodes,isTest):##args自体を引数に取�
             if not(alreadyCalculated):
                 file_name = exec_gjf(auto_dir, monomer_name, {**params_dict,'cx':0,'cy':0,'cz':0}, machine_type,isInterlayer=False,isTest=isTest)##計算を実行並びにxyzファイルの出力
                 df_newline = pd.Series({**params_dict,'E':0.,'E_p':0.,'E_t':0.,'machine_type':machine_type,'status':'InProgress','file_name':file_name})
-                df_E=df_E.concat(df_newline,ignore_index=True)
+                df_E=pd.concat([df_E,df_newline],ignore_index=True)
                 df_E.to_csv(auto_csv,index=False)
     
     init_params_csv=os.path.join(auto_dir, 'step1_init_params.csv')
